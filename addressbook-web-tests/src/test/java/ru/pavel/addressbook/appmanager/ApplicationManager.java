@@ -1,7 +1,10 @@
 package ru.pavel.addressbook.appmanager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -13,7 +16,6 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private GroupHelper groupHelper;
   private NavigationHelper navigationHelper;
- // private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
@@ -41,15 +43,6 @@ public class ApplicationManager {
       driver.findElement(by);
       return true;
     } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
       return false;
     }
   }
