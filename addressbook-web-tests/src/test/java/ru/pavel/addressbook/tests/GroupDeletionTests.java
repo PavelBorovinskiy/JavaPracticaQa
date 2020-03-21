@@ -1,4 +1,4 @@
-package ru.pavel.addressbook;
+package ru.pavel.addressbook.tests;
 
 import org.testng.annotations.Test;
 
@@ -8,10 +8,10 @@ public class GroupDeletionTests extends TestBase {
   @Test
   public void testGroupDeletion() throws Exception {
 
-    gotoGroupPage();
-    selectdGroup();
-    deleteSelectedGroup();
-    returnToGroupPage();
+    app.gotoGroupPage();
+    app.selectdGroup();
+    app.deleteSelectedGroup();
+    app.returnToGroupPage();
   }
 
 }

@@ -1,4 +1,4 @@
-package ru.pavel.addressbook;
+package ru.pavel.addressbook.model;
 
 public class GroupData {
   private final String name;
