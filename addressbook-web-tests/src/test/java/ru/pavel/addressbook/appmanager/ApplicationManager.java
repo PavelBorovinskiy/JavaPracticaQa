@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,10 +20,22 @@ public class ApplicationManager {
   private NavigationHelper navigationHelper;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
+  private String browser;
+
+
+  public ApplicationManager(String browser) {
+
+    this.browser = browser;
+  }
 
   public void init() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
+    if (browser.equals(BrowserType.CHROME)) {
+      WebDriverManager.chromedriver().setup();
+      driver = new ChromeDriver();
+    } else if (browser.equals(BrowserType.FIREFOX)) {
+      WebDriverManager.firefoxdriver().setup();
+      driver = new FirefoxDriver();
+    }
     sessionHelper = new SessionHelper(driver);
     navigationHelper = new NavigationHelper(driver);
     groupHelper = new GroupHelper(driver);
