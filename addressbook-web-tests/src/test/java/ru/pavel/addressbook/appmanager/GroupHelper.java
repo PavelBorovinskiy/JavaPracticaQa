@@ -2,7 +2,10 @@ package ru.pavel.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import ru.pavel.addressbook.model.GroupData;
+
+import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
@@ -56,6 +59,10 @@ public class GroupHelper extends HelperBase {
 
   public boolean isThreeAGroup() {
     return  isElementPresent(By.name("selected[]"));
+  }
+
+  public int getGroupCount() {
+   return  driver.findElements(By.name("selected[]")).size();
   }
 }
 

@@ -1,14 +1,15 @@
 package ru.pavel.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pavel.addressbook.model.GroupData;
 
 public class GroupModificationTests extends TestBase {
   @Test
-  public void testGroupModification(){
+  public void testGroupModification() {
     app.getNavigationHelper().gotoGroupPage();
+    int before = app.getGroupHelper().getGroupCount();
     if (!app.getGroupHelper().isThreeAGroup()) {
-      
       app.getGroupHelper().createGroup(new GroupData("test1", null, null));
     }
     app.getGroupHelper().selectdGroup();
@@ -16,6 +17,9 @@ public class GroupModificationTests extends TestBase {
     app.getGroupHelper().fillGroupForm(new GroupData("test10", "test2", "test3"));
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
+    int after = app.getGroupHelper().getGroupCount();
+    Assert.assertEquals(after, before);
+
 
   }
 }
