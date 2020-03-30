@@ -27,9 +27,8 @@ public class GroupCreationTests extends TestBase {
 //    }
 
 
-/*   Comparator<? super GroupData> byId = (Comparator<GroupData>)
-    (o1, o2) -> Integer.compare(o1.getId(),o2.getId());
-    int max1 = after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId();
+/*   Comparator<? super GroupData> byId = (Comparator<GroupData>)(o1, o2) -> Integer.compare(o1.getId(),o2.getId());-- лямбда выражение
+    int max1 = after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId(); -- лямбда выражение
 
     * нахождение максимального индификатора при создание группы, через лямбда выражение.
 
