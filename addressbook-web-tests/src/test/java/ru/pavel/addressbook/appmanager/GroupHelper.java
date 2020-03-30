@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import ru.pavel.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 
@@ -35,6 +37,11 @@ public class GroupHelper extends HelperBase {
 
   }
 
+  public void selectdGroupById(int id) {
+    driver.findElement(By.cssSelector("input[value='" + id + "']")).click();
+
+  }
+
   public void deleteSelectedGroup() {
     click(By.name("delete"));
   }
@@ -59,8 +66,8 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
-  public void modify(int index, GroupData group) {
-    selectdGroup(index);
+  public void modify( GroupData group) {
+    selectdGroupById(group.getId());
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
@@ -69,6 +76,12 @@ public class GroupHelper extends HelperBase {
 
   public void delet(int index) {
     selectdGroup(index);
+    deleteSelectedGroup();
+    returnToGroupPage();
+  }
+
+  public void delet(GroupData group) {
+    selectdGroupById(group.getId());
     deleteSelectedGroup();
     returnToGroupPage();
   }
@@ -87,7 +100,19 @@ public class GroupHelper extends HelperBase {
     for (WebElement element : elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupData group = new GroupData(id, name, null, null);
+      GroupData group = new GroupData().withId(id).withName("test1");
+      groups.add(group);
+    }
+    return groups;
+  }
+
+  public Set<GroupData> all() {
+    Set<GroupData> groups = new HashSet<GroupData>();
+    List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      GroupData group = new GroupData().withId(id).withName("test1");
       groups.add(group);
     }
     return groups;
